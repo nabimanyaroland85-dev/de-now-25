@@ -1,0 +1,1228 @@
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+  line-height: 1.55;
+}
+.hidden { display: none !important; }
+.header {
+  position: sticky; top: 0; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px; padding: 16px 6%;
+  background: #101828; color: white;
+  box-shadow: 0 2px 15px rgba(0,0,0,.12);
+}
+.logo { font-size: 1.45rem; font-weight: 900; letter-spacing: 2px; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+nav a { color: white; text-decoration: none; padding: 8px 10px; border-radius: 8px; font-size: .92rem; }
+nav a:hover { background: rgba(255,255,255,.1); }
+.hero {
+  min-height: 560px; display: flex; align-items: center;
+  padding: 80px 6%;
+  background: linear-gradient(135deg, #101828 0%, #1d2939 60%, #344054 100%);
+  color: white;
+}
+.hero-content { max-width: 850px; }
+.eyebrow { display: inline-block; font-size: .75rem; font-weight: 800; letter-spacing: 1.5px; opacity: .8; margin-bottom: 10px; }
+.hero h1 { font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1.02; margin: 10px 0 22px; }
+.hero p { font-size: 1.15rem; max-width: 700px; opacity: .9; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.main-button, .secondary-button, .action-button, .danger-button, .small-button, .link-button {
+  border: 0; cursor: pointer; text-decoration: none; display: inline-block;
+  border-radius: 10px; font-weight: 700;
+}
+.main-button, .secondary-button { padding: 14px 20px; }
+.main-button { background: #f04438; color: white; }
+.secondary-button { background: white; color: #172033; }
+.section { padding: 70px 6%; }
+.card, .dashboard-panel, .provider-status-card {
+  background: white; border-radius: 18px; padding: 28px;
+  box-shadow: 0 8px 30px rgba(16,24,40,.07);
+  border: 1px solid #eaecf0;
+}
+.account-card { max-width: 650px; margin: auto; }
+.section-heading { text-align: center; max-width: 800px; margin: 0 auto 30px; }
+.section-heading h2, .card h2, .dashboard-header h2 { font-size: 2rem; margin: 5px 0 10px; }
+.description { color: #667085; }
+label { display: block; margin: 16px 0 7px; font-weight: 700; }
+input, select, textarea {
+  width: 100%; padding: 13px 14px; border: 1px solid #d0d5dd;
+  border-radius: 10px; font: inherit; background: white;
+}
+textarea { min-height: 110px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 3px solid rgba(52,152,219,.15); border-color: #667085; }
+.action-button { background: #101828; color: white; padding: 12px 18px; margin-top: 16px; }
+.action-button:hover { opacity: .9; }
+.large-button { width: 100%; padding: 15px; font-size: 1.05rem; }
+.danger-button { background: #fff1f0; color: #b42318; padding: 10px 14px; margin-top: 10px; }
+.small-button { padding: 7px 10px; margin-left: 5px; background: #eef2f6; }
+.link-button { background: none; color: #175cd3; padding: 0; }
+.switch-text { margin-top: 18px; }
+.category-grid { max-width: 1100px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 14px; }
+.category-card {
+  border: 1px solid #eaecf0; background: white; padding: 22px; border-radius: 16px;
+  cursor: pointer; text-align: left; min-height: 140px;
+  box-shadow: 0 5px 18px rgba(16,24,40,.05);
+}
+.category-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(16,24,40,.1); }
+.category-card span { display: block; font-size: 2rem; margin-bottom: 8px; }
+.category-card strong, .category-card small { display: block; }
+.category-card small { color: #667085; margin-top: 5px; }
+.service-explorer, .provider-directory-card { max-width: 1100px; margin: 30px auto 0; }
+.service-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.service-choice { padding: 10px 14px; border-radius: 999px; border: 1px solid #d0d5dd; background: #f9fafb; cursor: pointer; font-weight: 700; }
+.service-choice:hover { background: #eaecf0; }
+.provider-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap: 15px; }
+.provider-card {
+  display: flex; gap: 15px; padding: 18px; border: 1px solid #eaecf0;
+  border-radius: 14px; background: #fcfcfd;
+}
+.provider-avatar { font-size: 2.2rem; }
+.provider-main h4 { margin: 0 0 3px; font-size: 1.1rem; }
+.provider-main p { margin: 4px 0; font-size: .92rem; }
+.availability-badge, .verified-badge, .pending-badge, .status-badge {
+  display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: .72rem; font-weight: 800; margin: 4px 4px 0 0;
+}
+.online, .verified-badge { background: #ecfdf3; color: #027a48; }
+.offline { background: #f2f4f7; color: #475467; }
+.pending-badge { background: #fffaeb; color: #b54708; }
+.status-badge { background: #eef4ff; color: #175cd3; }
+.dashboard-container { max-width: 1150px; margin: auto; }
+.dashboard-header { margin-bottom: 25px; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 15px; }
+.dashboard-card {
+  background: white; border: 1px solid #eaecf0; border-radius: 16px; padding: 20px;
+  cursor: pointer; box-shadow: 0 5px 20px rgba(16,24,40,.05);
+}
+.dashboard-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.dashboard-card h3 { margin: 5px 0; }
+.dashboard-card p { color: #667085; margin: 0; }
+.dashboard-panel { margin-top: 22px; }
+.request-card {
+  border: 1px solid #eaecf0; border-radius: 14px; padding: 18px; margin: 12px 0; background: #fcfcfd;
+}
+.request-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.request-card h4 { margin: 0 0 10px; font-size: 1.1rem; }
+.request-card p { margin: 7px 0; }
+.request-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.success-message { margin-top: 14px; padding: 12px 14px; background: #ecfdf3; color: #027a48; border-radius: 10px; }
+.empty-message { color: #667085; text-align: center; padding: 18px; }
+.mini-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 12px; margin: 20px 0; }
+.mini-stats > div { background: white; border: 1px solid #eaecf0; border-radius: 14px; padding: 18px; text-align: center; }
+.mini-stats strong { display: block; font-size: 1.7rem; }
+.mini-stats span { color: #667085; }
+.provider-status-card { margin-bottom: 18px; }
+.toggle-line { display: flex; align-items: center; gap: 10px; margin: 0; }
+.toggle-line input { width: auto; }
+.request-section { background: #eef4ff; }
+.provider-background { background: #f8f9fc; }
+.safety-section { padding-top: 30px; padding-bottom: 30px; }
+.safety-card { border-left: 5px solid #f04438; }
+.features { padding: 70px 6%; background: #101828; color: white; }
+.features > h2 { text-align: center; }
+.feature-container { max-width: 1000px; margin: 30px auto 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px; }
+.feature-card { padding: 24px; border: 1px solid rgba(255,255,255,.12); border-radius: 15px; background: rgba(255,255,255,.05); }
+.feature-number { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: white; color: #101828; font-weight: 900; }
+footer { padding: 30px 6%; background: #0b111c; color: #98a2b3; text-align: center; }
+.modal { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 20px; background: rgba(16,24,40,.65); }
+.modal-card { width: min(520px,100%); background: white; padding: 28px; border-radius: 18px; position: relative; box-shadow: 0 20px 70px rgba(0,0,0,.25); }
+.modal-close { position: absolute; top: 10px; right: 14px; border: 0; background: none; font-size: 2rem; cursor: pointer; }
+.payment-amount { font-size: 2rem; font-weight: 900; margin: 15px 0; }
+.demo-notice { padding: 12px; background: #fffaeb; color: #b54708; border-radius: 10px; font-size: .9rem; }
+.payment-row, .admin-row { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 13px 0; border-bottom: 1px solid #eaecf0; }
+.payment-row small { color: #667085; display: block; }
+.admin-row { flex-wrap: wrap; }
+.subsection-title { margin-top: 24px; }
+
+@media (max-width: 800px) {
+  .header { align-items: flex-start; flex-direction: column; }
+  nav { justify-content: flex-start; }
+  .hero { min-height: 500px; padding-top: 55px; }
+  .section, .features { padding-left: 4%; padding-right: 4%; }
+}
+
+/* =========================================================
+   DE NOW - MY BOOKINGS
+========================================================= */
+
+.booking-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.booking-tab {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.booking-tab:hover {
+    transform: translateY(-1px);
+}
+
+.booking-tab.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.booking-item {
+    border: 1px solid #e1e1e1;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: #fff;
+}
+
+.booking-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.booking-top h3 {
+    margin: 6px 0 0;
+}
+
+.booking-status {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-ongoing {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.booking-details p {
+    margin: 7px 0;
+}
+
+.booking-description {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f7f7f7;
+}
+
+.booking-description p {
+    margin-bottom: 0;
+}
+
+.booking-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.booking-cancel-button {
+    background: #b00020;
+}
+
+@media (max-width: 600px) {
+
+    .booking-top {
+        flex-direction: column;
+    }
+
+    .booking-tabs {
+        overflow-x: auto;
+    }
+
+    .booking-tab {
+        white-space: nowrap;
+    }
+
+}
+
+/* =========================================================
+   DE NOW - GPS LOCATION
+========================================================= */
+
+.location-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.location-input-row input {
+    flex: 1;
+}
+
+.location-button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.location-button:hover {
+    transform: translateY(-1px);
+}
+
+.location-status {
+    margin-top: 8px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+@media (max-width: 700px) {
+
+    .location-input-row {
+        flex-direction: column;
+    }
+
+    .location-button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   DE NOW - SOS EMERGENCY MODE
+========================================================= */
+
+.sos-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.sos-card {
+    border-radius: 18px;
+    padding: 30px;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.sos-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.sos-card h2 {
+    margin: 10px 0;
+    font-size: 30px;
+}
+
+.sos-card p {
+    line-height: 1.6;
+}
+
+.sos-button {
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 28px;
+    background: #c40000;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.sos-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+}
+
+.sos-status {
+    min-height: 22px;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+.sos-safety-notice {
+    margin-top: 15px;
+    padding: 18px;
+    border-radius: 12px;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.sos-safety-notice strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.sos-safety-notice p {
+    margin: 7px 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+
+    .sos-card {
+        padding: 22px;
+    }
+
+    .sos-card h2 {
+        font-size: 25px;
+    }
+
+    .sos-button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   DE NOW - PROVIDER TRACKING
+========================================================= */
+
+.tracking-panel {
+    margin-top: 20px;
+}
+
+.tracking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tracking-header h3 {
+    margin: 6px 0;
+}
+
+.tracking-header p {
+    margin: 0;
+}
+
+.tracking-refresh-button {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tracking-card {
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.tracking-main-status {
+    padding: 24px;
+    text-align: center;
+    background: #111;
+    color: #fff;
+}
+
+.tracking-main-status h3 {
+    margin: 10px 0 8px;
+}
+
+.tracking-main-status p {
+    margin: 0 0 12px;
+    line-height: 1.5;
+}
+
+.tracking-live-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #1e7e34;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.tracking-eta {
+    display: block;
+    font-size: 17px;
+}
+
+.tracking-provider {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.tracking-provider-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.tracking-provider h4 {
+    margin: 0 0 4px;
+}
+
+.tracking-provider p {
+    margin: 0;
+}
+
+.tracking-locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
+}
+
+.tracking-locations div {
+    padding: 14px;
+    border-radius: 10px;
+    background: #f7f7f7;
+}
+
+.tracking-locations span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.tracking-locations strong {
+    display: block;
+}
+
+.tracking-progress {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.tracking-step {
+    flex: 1;
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+}
+
+.tracking-step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    color: #555;
+    font-weight: 700;
+}
+
+.tracking-step.active {
+    color: #111;
+    font-weight: 700;
+}
+
+.tracking-step.active .tracking-step-number {
+    background: #111;
+    color: #fff;
+}
+
+.tracking-request-info {
+    padding: 20px;
+}
+
+.tracking-request-info p {
+    margin: 7px 0;
+}
+
+.tracking-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 20px 20px;
+}
+
+.tracking-note {
+    padding: 15px 20px;
+    background: #f7f7f7;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+}
+
+.tracking-note p {
+    margin: 7px 0 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+
+    .tracking-header {
+        flex-direction: column;
+    }
+
+    .tracking-refresh-button {
+        width: 100%;
+    }
+
+    .tracking-locations {
+        grid-template-columns: 1fr;
+    }
+
+    .tracking-progress {
+        overflow-x: auto;
+    }
+
+    .tracking-step {
+        min-width: 85px;
+    }
+
+}
+
+/* =========================================================
+   DE NOW - INTERACTIVE MAP
+========================================================= */
+
+.tracking-map-wrapper {
+    padding: 0 20px 20px;
+}
+
+.de-now-live-map {
+    width: 100%;
+    height: 330px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.map-unavailable {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+
+    .de-now-live-map {
+        height: 280px;
+    }
+
+}
+
+/* =========================================================
+   DE NOW — PROVIDER GPS LOCATION SHARING
+   ========================================================= */
+
+.provider-location-sharing-panel {
+    margin: 20px 0;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.provider-location-sharing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.provider-location-sharing-header h3 {
+    margin: 8px 0;
+}
+
+.provider-location-sharing-header p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.provider-location-indicator {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.provider-location-indicator.offline {
+    background: #eeeeee;
+    color: #555555;
+}
+
+.provider-location-indicator.online {
+    background: #dff7e7;
+    color: #147a38;
+}
+
+.provider-location-sharing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.provider-location-sharing-status {
+    margin-top: 18px;
+    padding: 14px;
+    background: #f7f7f7;
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+.provider-location-coordinates {
+    margin-top: 12px;
+    padding: 14px;
+    background: #f8fbff;
+    border: 1px solid #dcecff;
+    border-radius: 10px;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+    .provider-location-sharing-header {
+        flex-direction: column;
+    }
+
+    .provider-location-indicator {
+        align-self: flex-start;
+    }
+
+    .provider-location-sharing-actions {
+        flex-direction: column;
+    }
+
+    .provider-location-sharing-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   DE NOW — PROVIDER PROFILE
+   ========================================================= */
+
+.de-now-provider-profile-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.de-now-provider-profile-card {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.de-now-provider-profile-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.de-now-provider-profile-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-right: 40px;
+}
+
+.de-now-provider-profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f1f1;
+    font-size: 40px;
+    flex-shrink: 0;
+}
+
+.de-now-provider-profile-top h2 {
+    margin: 5px 0;
+}
+
+.de-now-provider-profile-top p {
+    margin: 5px 0 10px;
+}
+
+.de-now-provider-profile-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.de-now-provider-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.de-now-provider-profile-item {
+    padding: 16px;
+    background: #f7f7f7;
+    border-radius: 12px;
+}
+
+.de-now-provider-profile-item span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.de-now-provider-profile-item strong {
+    display: block;
+    font-size: 18px;
+}
+
+.de-now-provider-profile-item small {
+    display: block;
+    margin-top: 4px;
+    opacity: 0.75;
+}
+
+.de-now-provider-profile-information {
+    margin-top: 20px;
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 12px;
+    line-height: 1.7;
+}
+
+.de-now-provider-profile-information p {
+    margin: 7px 0;
+}
+
+.de-now-provider-profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.provider-profile-button-row {
+    margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+
+    .de-now-provider-profile-card {
+        padding: 20px;
+    }
+
+    .de-now-provider-profile-top {
+        align-items: flex-start;
+    }
+
+    .de-now-provider-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .de-now-provider-profile-actions {
+        flex-direction: column;
+    }
+
+    .de-now-provider-profile-actions button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   DE NOW — PROVIDER EARNINGS
+   ========================================================= */
+
+.provider-earnings-panel {
+    margin-top: 20px;
+}
+
+.earnings-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.provider-earnings-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.provider-earning-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+}
+
+.earning-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.provider-earning-card span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.provider-earning-card strong {
+    display: block;
+    font-size: 20px;
+}
+
+.provider-earnings-summary {
+    margin-top: 20px;
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 12px;
+}
+
+.earnings-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 9px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.earnings-summary-row:last-child {
+    border-bottom: none;
+}
+
+.earnings-note {
+    display: block;
+    margin-top: 12px;
+    line-height: 1.5;
+    opacity: 0.75;
+}
+
+@media (max-width: 900px) {
+
+    .provider-earnings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .provider-earnings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .earnings-summary-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}
+
+/* =========================================================
+   DE NOW — PROVIDER JOB HISTORY
+   ========================================================= */
+
+.provider-job-history-panel {
+    margin-top: 20px;
+}
+
+.job-history-description {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.provider-history-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.history-summary-card {
+    padding: 16px;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+.history-summary-card span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.history-summary-card strong {
+    display: block;
+    font-size: 22px;
+}
+
+.provider-history-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.history-filter-button {
+    padding: 9px 16px;
+    border: 1px solid #d5d5d5;
+    background: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.history-filter-button.active {
+    background: #111111;
+    color: #ffffff;
+}
+
+.provider-job-history-card {
+    padding: 20px;
+    margin-bottom: 14px;
+    border: 1px solid #e2e2e2;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.provider-job-history-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.provider-job-history-top h4 {
+    margin: 0 0 8px;
+}
+
+.history-job-amount {
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+.history-status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.history-status-active {
+    background: #fff3cd;
+    color: #765900;
+}
+
+.history-status-completed {
+    background: #dff7e7;
+    color: #147a38;
+}
+
+.history-status-cancelled {
+    background: #eeeeee;
+    color: #666666;
+}
+
+.provider-job-history-details {
+    line-height: 1.6;
+}
+
+.provider-job-history-details p {
+    margin: 7px 0;
+}
+
+.provider-job-history-action {
+    margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+
+    .provider-history-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .provider-history-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .provider-job-history-top {
+        flex-direction: column;
+    }
+
+    .history-job-amount {
+        white-space: normal;
+    }
+
+    .provider-history-filters {
+        flex-direction: column;
+    }
+
+    .history-filter-button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================================
+   DE NOW — PROVIDER PERFORMANCE
+   ========================================================= */
+
+.provider-performance-panel {
+    margin-top: 20px;
+}
+
+.performance-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.provider-performance-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+}
+
+.provider-performance-card {
+    padding: 18px;
+    background: #f7f7f7;
+    border: 1px solid #e3e3e3;
+    border-radius: 14px;
+}
+
+.performance-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.provider-performance-card span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.provider-performance-card strong {
+    display: block;
+    font-size: 20px;
+}
+
+.provider-performance-message {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 12px;
+    line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+
+    .provider-performance-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .provider-performance-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .provider-performance-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================================
+   DE NOW — REQUEST PHOTO
+   ========================================================= */
+
+.request-photo-upload {
+    margin-top: 15px;
+}
+
+.request-photo-status {
+    margin-top: 8px;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.request-photo-preview {
+    max-width: 280px;
+    max-height: 220px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.de-now-photo-indicator {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    font-weight: 600;
+}
